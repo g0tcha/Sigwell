@@ -31,16 +31,23 @@ function App() {
     init();
   }, []);
 
-  const createTransfer = transfer => {
-    wallet.methods
+  const createTransfer = async transfer => {
+    await wallet.methods
       .createTransfer(transfer.amount, transfer.to)
       .send({ from: accounts[0] });
+    refetchTransfers()
   }
 
-  const approveTransfer = transferId => {
-    wallet.methods
+  const approveTransfer = async transferId => {
+    await wallet.methods
       .approveTransfer(transferId)
       .send({ from: accounts[0] });
+    refetchTransfers()
+  }
+
+  const refetchTransfers = async () => {
+    const transfers = await wallet.methods.getTransfers().call()
+    setTransfers(transfers)
   }
 
   if (typeof web3 === 'undefined' ||
@@ -49,10 +56,10 @@ function App() {
     typeof quorum === 'undefined' ||
     approvers.length === 0) {
     return (
-      <div className="container">
-        <div className="row" id="block-loader">
-          <div className="col-md-4 mx-auto my-auto text-center">
-            <h3 className="text-white">Loading ...</h3>
+      <div>
+        <div>
+          <div>
+            <h3>Loading ...</h3>
           </div>
         </div>
       </div>
@@ -60,7 +67,7 @@ function App() {
   }
 
   return (
-    <div className="container">
+    <div>
       <Header quorum={quorum} />
       <Approvers approvers={approvers} />
       <main>
