@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #282D35;
+    color: white;
+;
+}
+
+/* Navigation */
+
+nav {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #21222A;
+    color: white;
+    height: 90px;
+}
+
+.nav--title {
+    color: #61DAFB;
+    font-weight: 600;
+}
+
+.nav--quorum {
+    margin-left: auto;
+    font-weight: bold;
+}
+
+.approvers {
+    background-color: #61DAFB;
+    color: white;
+    display: flex;
+}
+
+.approvers > p {
+    margin: auto;
+    padding: 5px;
+}
+
+main {
+    padding: 15px 25px;
+    display: flex;
+}
+
+.new-transfer {
+    width: 35%;
+}
+
+.transfers {
+    padding: 0 20px;
+    width: 65%;
+}
+
+/* New Transfer */
+
+.new-transfer--form {
+    padding: 20px;
+}
+
+.new-transfer--form {
+    border-radius: 5px;
+}
+
+.new-transfer--form, .transfers--list {
+    background-color: #d6ccc2;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin: 8px 0;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #61DAFB;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 4px;
+    margin: 8px 0;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+input[type=submit]:hover {
+    background-color: #0fb9f0;
+}
+
+/* Transfers */
+
+.transfers--list {
+    border-spacing: 0;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.transfers--list tr:nth-child(odd) {
+    background-color: #e6e0da;
+}
+
+.transfers--list td, .transfers--list th {
+    padding: 8px;
+}
+
+.transfers--list th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #61DAFB;
+    color: white;
+}
+
+#approve-btn {
+    margin-left: 15px;
+    color: white;
+    width: 24px;
+    height: 24px;
+    background-color: #4BB543;
+    border: none;
+    border-radius: 2px;
+}
