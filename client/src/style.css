@@ -7,7 +7,17 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: #282D35;
     color: white;
-;
+}
+
+.loading {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.loading > h3 {
+    align-items: center;
+    margin: auto;
 }
 
 /* Navigation */
@@ -97,18 +107,16 @@ input[type=submit]:hover {
 
 /* Transfers */
 
-.transfers--list {
-    border-spacing: 0;
-    border-radius: 5px;
-    width: 100%;
-}
-
-.transfers--list tr:nth-child(odd) {
+.transfers--list tr:nth-child(even) {
     background-color: #e6e0da;
 }
 
-.transfers--list td, .transfers--list th {
-    padding: 8px;
+table thead tr:first-child th:first-child {
+    border-top-left-radius: 5px;
+}
+
+table thead tr:first-child th:last-child {
+    border-top-right-radius: 5px;
 }
 
 .transfers--list th {
@@ -119,12 +127,30 @@ input[type=submit]:hover {
     color: white;
 }
 
-#approve-btn {
-    margin-left: 15px;
+.transfers--list {
+    border-spacing: 0;
+    border-collapse: separate;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.transfers--list td, .transfers--list th {
+    padding: 8px;
+}
+
+#approve-btn, #approve-btn-disabled {
     color: white;
-    width: 24px;
-    height: 24px;
+    width: 80%;
+    border: 1px solid white;
+    border-radius: 4px;
+    line-height: 24px;
+}
+
+#approve-btn {
     background-color: #4BB543;
-    border: none;
-    border-radius: 2px;
+}
+
+#approve-btn-disabled {
+    background-color: gray;
+    margin-right: auto;
 }

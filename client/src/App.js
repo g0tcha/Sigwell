@@ -12,6 +12,7 @@ function App() {
   const [approvers, setApprovers] = useState([]);
   const [quorum, setQuorum] = useState(undefined);
   const [transfers, setTransfers] = useState([]);
+  const [approvals, setApprovals] = useState([]);
 
   useEffect(() => {
     const init = async () => {
@@ -21,12 +22,18 @@ function App() {
       const approvers = await wallet.methods.getApprovers().call();
       const quorum = await wallet.methods.quorum().call();
       const transfers = await wallet.methods.getTransfers().call();
+      const approvals = await Promise.all(transfers.map(async (transfer) => {
+        const hasApproved = await wallet.methods.approvals(accounts[0], transfer.id).call();
+        return hasApproved;
+      }))
       setWeb3(web3);
       setAccounts(accounts);
       setWallet(wallet);
       setApprovers(approvers);
       setQuorum(quorum);
       setTransfers(transfers);
+      setApprovals(approvals);
+      console.log(approvals);
     };
     init();
   }, []);
@@ -56,12 +63,8 @@ function App() {
     typeof quorum === 'undefined' ||
     approvers.length === 0) {
     return (
-      <div>
-        <div>
-          <div>
-            <h3>Loading ...</h3>
-          </div>
-        </div>
+      <div className="loading">
+        <h3>Loading ...</h3>
       </div>
     );
   }
@@ -72,7 +75,7 @@ function App() {
       <Approvers approvers={approvers} />
       <main>
         <NewTransfer createTransfer={createTransfer} />
-        <TransferList transfers={transfers} approveTransfer={approveTransfer} />
+        <TransferList transfers={transfers} approvals={approvals} approveTransfer={approveTransfer} />
       </main>
     </div>
   );
