@@ -81,3 +81,4 @@ chrome-user-data
 .vscode
 *.swp
 *.swo
+.secrets.json
